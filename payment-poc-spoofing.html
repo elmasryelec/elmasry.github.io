@@ -115,8 +115,8 @@ section:nth-child(even) {
          const pipOpen = async (imageElement) => {
      
   pipWindow = await window.documentPictureInPicture?.requestWindow({
-      width: 462, 
-      height: 470,
+      width: 470, 
+      height: 490,
         });
         
         
@@ -209,8 +209,8 @@ const img = document.createElement('img');
         
         const popupWidth = 428;
         const popupHeight = 440;
-        const left = (screen.width - popupWidth) - 44;
-        const top = (screen.height - popupHeight) - 140;
+        const left = (screen.width - popupWidth) - 24;
+        const top = (screen.height - popupHeight) - 160;
         
         if (!popupOpen) { 
         popupOpen = true;
