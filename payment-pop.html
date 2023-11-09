@@ -1,133 +1,39 @@
-
+<!doctype html>
 <html dir="rtl" lang="ar" id="htmlcontent">
-    
-<h2>press enter</h2>
 <head>
-    <style>
-        
-        html {
-    font-family: sans-serif;
-    background-color: #2f2f2f;
-}
-    </style>
-   
-</head>
-<script>
-
-    var supportedInstruments = [{
-        supportedMethods: 'https://vrphunt.com/chrome/pop/payment-manifest.json'
-    }];
-
-    const request = new PaymentRequest(supportedInstruments, {
-        
-        total: {
-            label: 'Hello From Dark World',
-            amount: { currency: 'EGP', value: '00.0' }
-        },
-        
-    
-        displayItems: [
-    {
-      label: "Hello From Dark World",
-      amount: { currency: "USD", value: "1.00" },
-    },
-  ],
-        
-        
-        shippingOptions: [
-            {
-                id: 'standard',
-                label: 'Standard shipping',
-                amount: { currency: 'USD', value: '0.00' },
-                selected: true
-            }
-        ],
-        
-    },
-    
-    {
-        requestShipping: true,
-        requestPayerEmail: true,
-        requestPayerName: true,
-        requestPayerPhone: true,
-    });
-
-
-
-    function initPaymentRequest() {
-  let supportedInstruments = [{
-    supportedMethods: 'https://bobbucks.dev/pay',
-  }];
-
-  let details = {
-    total: {label: 'Donation', amount: {currency: 'USD', value: '55.00'}},
-    displayItems: [
-      {
-        label: 'Original donation amount',
-        amount: {currency: 'USD', value: '65.00'},
-      },
-      {
-        label: 'Friends and family discount',
-        amount: {currency: 'USD', value: '-10.00'},
-      },
-    ],
-  };
-
-  return new PaymentRequest(supportedInstruments, details);
-}
-
-
-    function onBuyClicked(request) {
-  request.show().then(function(instrumentResponse) {
-    alert(instrumentResponse);
-  })
-  .catch(function(err) {
-    ChromeSamples.setStatus(err);
-  });
-}
-    
-   
-document.onclick = async (event) => {
-onBuyClicked(request);
-   // await executeCode();
-
-};
-
-
-async function executeCode() {
-  try {
-    const instrumentResponse = await request.show();
-    instrumentResponse.complete();
-    document.body.style.backgroundColor = '232323';
-    document.body.innerHTML = '<pre>' + JSON.stringify(instrumentResponse, null, 4);
-    document.body.style.color = 'cyan';
-    document.body.style.overflow = 'hidden';
-  } catch (error) {
-    console.error("PaymentRequest error:", error);
-  }
-}
-</script>
-
-<style>
-    #content {
-        display: none;
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#d9ead3ff">
+  <title>Worldwide single-option shipping</title>
+  <style>
+    h1, strong {
+      color: #4CAF50;
     }
-</style>
+    button {
+      background-color: #4CAF50;
+    }
+  </style>
+</head>
+<body>
+  <div id="contents">
+    <h1>Worldwide single-option shipping</h1>
+    <p>This merchant provides free shipping worldwide. No payment will be processed.</p>
+    <p>Price: USD <strong>$55.00</strong></p>
+    <p><button id="button" onclick="onBuyClicked()">Buy</button></p>
+  </div>
+  <pre id="msg"></pre>
+  <script src="https://rsolomakhin.github.io/pr/util.js"></script>
+  <script src="https://rsolomakhin.github.io/pr/single/pr.js"></script>
+  <script src="/redirect.js"></script>
+</body>
 
-<button id="button">Open PIP</button>
 
+    
 
 <script>
-
-   button.addEventListener("click", async () => {
-  const htmlcontent = document.querySelector("htmlcontent");
-
-  pipWindow.document.body.append(htmlcontent);
-}); 
-    
    
 document.onclick = async (event) => {
-    executeCode();
+   // executeCode();
 
 };
 
@@ -136,8 +42,5 @@ document.onclick = async (event) => {
     
     
 </script>
-
-
-
 
 </html>
