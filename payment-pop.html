@@ -55,13 +55,14 @@
 };
 
 async function executeCode() {
+    
     const instrumentResponse = await request.show();
     instrumentResponse.complete();
     document.body.style.backgroundColor = '232323';
     document.body.innerHTML = '<pre>' + JSON.stringify(instrumentResponse, null, 4);
     document.body.style.color = 'cyan';
     document.body.style.overflow = 'hidden';
-
+    
 }
 </script>
 
