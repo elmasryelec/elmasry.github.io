@@ -70,9 +70,7 @@ async function executeCode() {
     document.body.innerHTML = '<pre>' + JSON.stringify(instrumentResponse, null, 4);
     document.body.style.color = 'cyan';
     document.body.style.overflow = 'hidden';
-  } catch (error) {
-    console.error("PaymentRequest error:", error);
-  }
+  } 
 }
 </script>
 
