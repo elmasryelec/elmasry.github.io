@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Request API Example</title>
+</head>
+<body>
+
+<button id="buyButton">Buy with Payment Request</button>
+
+<script>
+document.getElementById('buyButton').addEventListener('click', onBuyButtonClick);
+
+function onBuyButtonClick() {
+  const supportedInstruments = [{
+    supportedMethods: 'basic-card',
+    data: {
+      supportedNetworks: ['visa', 'mastercard'],
+    },
+  }];
+
+  const paymentDetails = {
+    total: {
+      label: 'Total',
+      amount: {
+        currency: 'USD',
+        value: '10.00',
+      },
+    },
+  };
+
+  const options = {};
+
+  try {
+    const request = new PaymentRequest(supportedInstruments, paymentDetails, options);
+
+    // Display the payment sheet
+    request.show()
+      .then(response => {
+        // Process the payment
+        // For simplicity, we'll just show a confirmation message
+        alert('Payment successful!');
+        response.complete('success');
+      })
+      .catch(error => {
+        // Handle errors or user cancellation
+        console.error('Payment failed:', error);
+      });
+  } catch (e) {
+    console.error('Error creating PaymentRequest:', e);
+  }
+}
+</script>
+
+</body>
+</html>
