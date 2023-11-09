@@ -7,7 +7,7 @@
  */
 function onBuyClicked() { // eslint-disable-line no-unused-vars
   var supportedInstruments = [{
-    supportedMethods: 'https://bobbucks.dev/pay',
+    supportedMethods: 'https://google.com/pay',
   }];
 
   var details = {
