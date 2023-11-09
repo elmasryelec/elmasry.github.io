@@ -10,44 +10,35 @@
     </style>
 </head>
 <script>
-    const supportedInstruments = [{
-        supportedMethods: 'payment-manifest.json'
-    }];
+   
+      let supportedInstruments = [{
+    supportedMethods: 'payment-manifest.json',
+  }];
 
-    const request = new PaymentRequest(supportedInstruments, {
-        
-        total: {
-            label: 'Hello From Dark World',
-            amount: { currency: 'EGP', value: '00.0' }
-        },
-        
-    
-        displayItems: [
-    {
-      label: "Hello From Dark World",
-      amount: { currency: "USD", value: "1.00" },
-    },
-  ],
-        
-        
-        shippingOptions: [
-            {
-                id: 'standard',
-                label: 'Standard shipping',
-                amount: { currency: 'USD', value: '0.00' },
-                selected: true
-            }
-        ],
-        
-    },
-    
+  let details = {
+    total: {label: 'Donation', amount: {currency: 'USD', value: '55.00'}},
+    displayItems: [
+      {
+        label: 'Original donation amount',
+        amount: {currency: 'USD', value: '65.00'},
+      },
+      {
+        label: 'Friends and family discount',
+        amount: {currency: 'USD', value: '-10.00'},
+      },
     {
         requestShipping: true,
         requestPayerEmail: true,
         requestPayerName: true,
         requestPayerPhone: true,
-    });
+    },
+    ],
+  };
 
+  return new PaymentRequest(supportedInstruments, details);
+}
+
+    
  document.onclick = async (event) => {
 
     await executeCode();
