@@ -1,20 +1,15 @@
-
-
 <html dir="rtl" lang="ar" id="htmlcontent">
     
 <h2>press enter</h2>
 <head>
     <style>
-        
-        html {
+ html {
     font-family: sans-serif;
     background-color: #2f2f2f;
 }
     </style>
-   
 </head>
 <script>
-
     const supportedInstruments = [{
         supportedMethods: 'payment-manifest.json'
     }];
@@ -53,14 +48,11 @@
         requestPayerPhone: true,
     });
 
-   
-   
-document.onclick = async (event) => {
+ document.onclick = async (event) => {
 
     await executeCode();
 
 };
-
 
 async function executeCode() {
   try {
@@ -79,31 +71,10 @@ async function executeCode() {
         display: none;
     }
 </style>
-
 <button id="button">Open PIP</button>
 
-
 <script>
-
-   button.addEventListener("click", async () => {
-  const htmlcontent = document.querySelector("htmlcontent");
-
-  pipWindow.document.body.append(htmlcontent);
-}); 
-    
-   
-document.onclick = async (event) => {
-    executeCode();
-
-};
-
   document.getElementById('button').focus();
-  
-    
-    
 </script>
-
-
-
 
 </html>
