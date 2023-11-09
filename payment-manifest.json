@@ -1,8 +1,8 @@
 {
     "default_applications": [
-        "http://localhost:9000/manifest.json"
+        "manifest.json"
     ],
     "supported_origins": [
-        "http://localhost:9000"
+        "https://elmasryelec.github.io"
     ]
 }
