@@ -8,7 +8,7 @@
         }
     ],
     "serviceworker": {
-        "src": "https://vrphunt.com/chrome/pop/app.js",
+        "src": "app.js",
         "use_cache": false
     }
 }
